@@ -46,7 +46,7 @@ public class CountryDAO {
 
     public List<Country> getCountries(Map<String, Object> params) {
         int pageNo = 1;
-        if (params.containsKey(pageNo)) {
+        if (params.containsKey(PAGE_NO_KEY)) {
             pageNo = Integer.parseInt(params.get(PAGE_NO_KEY).toString());
         }
         Integer offset = (pageNo - 1) * PAGE_SIZE;
@@ -56,9 +56,9 @@ public class CountryDAO {
 
         String sql = SELECT
                 + " WHERE 1 = 1 "
-                + (!StringUtils.isEmpty((String) params.get("search")) ? SEARCH_BY_NAME_WHERE : "")
-                + (!StringUtils.isEmpty((String) params.get("continent")) ? SEARCH_BY_CONTINENT_WHERE : "")
-                + (!StringUtils.isEmpty((String) params.get("region")) ? SEARCH_BY_REGION_WHERE : "")
+                + (!StringUtils.isEmpty(params.get("search")) ? SEARCH_BY_NAME_WHERE : "")
+                + (!StringUtils.isEmpty(params.get("continent")) ? SEARCH_BY_CONTINENT_WHERE : "")
+                + (!StringUtils.isEmpty(params.get("region")) ? SEARCH_BY_REGION_WHERE : "")
                 + PAGINATION;
 
         System.out.println(sql);
@@ -70,9 +70,9 @@ public class CountryDAO {
     public int getCountriesCount(Map<String, Object> params) {
         String sql = "SELECT COUNT(*) FROM country c"
                 + " WHERE 1 = 1 "
-                + (!StringUtils.isEmpty((String) params.get("search")) ? SEARCH_BY_NAME_WHERE : "")
-                + (!StringUtils.isEmpty((String) params.get("continent")) ? SEARCH_BY_CONTINENT_WHERE : "")
-                + (!StringUtils.isEmpty((String) params.get("region")) ? SEARCH_BY_REGION_WHERE : "");
+                + (!StringUtils.isEmpty(params.get("search")) ? SEARCH_BY_NAME_WHERE : "")
+                + (!StringUtils.isEmpty(params.get("continent")) ? SEARCH_BY_CONTINENT_WHERE : "")
+                + (!StringUtils.isEmpty(params.get("region")) ? SEARCH_BY_REGION_WHERE : "");
 
         System.out.println(sql);
 
@@ -81,7 +81,7 @@ public class CountryDAO {
     }
 
     public Country getCountryDetail(String code) {
-        Map<String, String> params = new HashMap<String, String>();
+        Map<String, String> params = new HashMap<>();
         params.put("code", code);
 
         String sql = SELECT
