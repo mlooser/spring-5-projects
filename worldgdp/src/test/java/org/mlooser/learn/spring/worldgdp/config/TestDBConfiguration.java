@@ -13,7 +13,7 @@ public class TestDBConfiguration {
     @Bean
     public DataSource dataSource(){
         return new EmbeddedDatabaseBuilder()
-                .generateUniqueName(true)
+                //.generateUniqueName(true)
                 .setType(EmbeddedDatabaseType.H2)
                 .setScriptEncoding("UTF-8")
                 .addScript("schema.sql")
