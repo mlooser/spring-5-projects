@@ -16,8 +16,7 @@ public class CountryLanguage {
     private String language;
 
     @NotNull
-    @Size(min = 1, max = 1)
-    private String isOfficial;
+    private Boolean isOfficial;
 
     @NotNull
     private Double percentage;
@@ -46,11 +45,11 @@ public class CountryLanguage {
         this.language = language;
     }
 
-    public String getIsOfficial() {
+    public Boolean getIsOfficial() {
         return isOfficial;
     }
 
-    public void setIsOfficial(String isOfficial) {
+    public void setIsOfficial(Boolean isOfficial) {
         this.isOfficial = isOfficial;
     }
 
@@ -69,12 +68,11 @@ public class CountryLanguage {
         CountryLanguage that = (CountryLanguage) o;
         return Objects.equals(countryCode, that.countryCode) &&
                 Objects.equals(language, that.language) &&
-                Objects.equals(isOfficial, that.isOfficial) &&
-                Objects.equals(percentage, that.percentage);
+                Objects.equals(isOfficial, that.isOfficial);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(countryCode, language, isOfficial, percentage);
+        return Objects.hash(countryCode, language, isOfficial);
     }
 }

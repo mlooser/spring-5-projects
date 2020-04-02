@@ -10,8 +10,8 @@ public class CountryLanguageRowMapper implements RowMapper<CountryLanguage> {
     public CountryLanguage mapRow(ResultSet resultSet, int i) throws SQLException {
         CountryLanguage countryLanguage = new CountryLanguage();
 
-        countryLanguage.setCountryCode(resultSet.getString("country_code"));
-        countryLanguage.setIsOfficial(resultSet.getString("isofficial"));
+        countryLanguage.setCountryCode(resultSet.getString("countrycode"));
+        countryLanguage.setIsOfficial(resultSet.getBoolean("isofficial"));
         countryLanguage.setLanguage(resultSet.getString("language"));
         countryLanguage.setPercentage(resultSet.getDouble("percentage"));
 
