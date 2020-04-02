@@ -1,12 +1,13 @@
-package org.mlooser.learn.spring.worldgdp.config;
+package org.mlooser.learn.spring.worldgdp.dao;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mlooser.learn.spring.worldgdp.dao.CountryDAO;
+import org.mlooser.learn.spring.worldgdp.config.TestDBConfiguration;
 import org.mlooser.learn.spring.worldgdp.model.City;
 import org.mlooser.learn.spring.worldgdp.model.Country;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -20,15 +21,13 @@ import static org.assertj.core.api.Assertions.assertThat;
         TestDBConfiguration.class,
         CountryDAO.class
 })
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
 public class CountryDAOTest {
 
     private static final String AFGHANISTAN_COUNTRY_CODE = "AFG";
 
     @Autowired
     private CountryDAO countryDAO;
-
-    @Autowired
-    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     @Test
     public void getCountriesTest(){
