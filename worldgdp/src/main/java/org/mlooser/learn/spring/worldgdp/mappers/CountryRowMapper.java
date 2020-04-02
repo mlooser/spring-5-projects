@@ -3,10 +3,12 @@ package org.mlooser.learn.spring.worldgdp.mappers;
 import org.mlooser.learn.spring.worldgdp.model.City;
 import org.mlooser.learn.spring.worldgdp.model.Country;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+@Component
 public class CountryRowMapper implements RowMapper<Country> {
     public Country mapRow(ResultSet resultSet, int i) throws SQLException {
         Country country = new Country();

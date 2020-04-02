@@ -2,7 +2,6 @@ package org.mlooser.learn.spring.worldgdp.dao;
 
 import org.mlooser.learn.spring.worldgdp.mappers.CityRowMapper;
 import org.mlooser.learn.spring.worldgdp.model.City;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -18,8 +17,13 @@ import java.util.Map;
 public class CityDAO {
     private static final Integer PAGE_SIZE = 10;
 
-    @Autowired
-    private NamedParameterJdbcTemplate namedParamJdbcTemplate;
+    private final NamedParameterJdbcTemplate namedParamJdbcTemplate;
+    private final CityRowMapper cityRowMapper;
+
+    public CityDAO(NamedParameterJdbcTemplate namedParamJdbcTemplate, CityRowMapper cityRowMapper) {
+        this.namedParamJdbcTemplate = namedParamJdbcTemplate;
+        this.cityRowMapper = cityRowMapper;
+    }
 
     public List<City> getCities(String countryCode) {
         return getCities(countryCode, null);
@@ -43,7 +47,7 @@ public class CityDAO {
         System.out.println(sql);
 
         return namedParamJdbcTemplate.query(
-                sql, params, new CityRowMapper());
+                sql, params, cityRowMapper);
     }
 
     public City getCityDetail(Long cityId) {

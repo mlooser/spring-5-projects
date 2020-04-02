@@ -2,7 +2,6 @@ package org.mlooser.learn.spring.worldgdp.dao;
 
 import org.mlooser.learn.spring.worldgdp.mappers.CountryRowMapper;
 import org.mlooser.learn.spring.worldgdp.model.Country;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
@@ -41,8 +40,13 @@ public class CountryDAO {
 
     private static final Integer PAGE_SIZE = 20;
 
-    @Autowired
-    NamedParameterJdbcTemplate namedParamJdbcTemplate;
+    private final NamedParameterJdbcTemplate namedParamJdbcTemplate;
+    private final CountryRowMapper countryRowMapper;
+
+    public CountryDAO(NamedParameterJdbcTemplate namedParamJdbcTemplate, CountryRowMapper countryRowMapper) {
+        this.namedParamJdbcTemplate = namedParamJdbcTemplate;
+        this.countryRowMapper = countryRowMapper;
+    }
 
     public List<Country> getCountries(Map<String, Object> params) {
         int pageNo = 1;
@@ -64,7 +68,7 @@ public class CountryDAO {
         System.out.println(sql);
 
         return namedParamJdbcTemplate.query(
-                sql, params, new CountryRowMapper());
+                sql, params, countryRowMapper);
     }
 
     public int getCountriesCount(Map<String, Object> params) {
@@ -90,7 +94,7 @@ public class CountryDAO {
         System.out.println(sql);
 
         return namedParamJdbcTemplate.queryForObject(
-                sql, params, new CountryRowMapper());
+                sql, params, countryRowMapper);
     }
 
     public void updateCountryDetail(String code, Country country) {

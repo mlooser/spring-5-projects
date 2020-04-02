@@ -9,7 +9,8 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import javax.sql.DataSource;
 
 @Configuration
-public class TestDBConfiguration {
+public class TestDBConfiguration extends DBConfiguration{
+    @Override
     @Bean
     public DataSource dataSource(){
         return new EmbeddedDatabaseBuilder()
@@ -19,10 +20,5 @@ public class TestDBConfiguration {
                 .addScript("schema.sql")
                 .addScript("data.sql")
                 .build();
-    }
-
-    @Bean
-    public NamedParameterJdbcTemplate namedParameterJdbcTemplate(){
-        return new NamedParameterJdbcTemplate(dataSource());
     }
 }

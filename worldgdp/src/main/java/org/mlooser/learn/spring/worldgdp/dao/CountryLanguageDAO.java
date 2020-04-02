@@ -2,7 +2,6 @@ package org.mlooser.learn.spring.worldgdp.dao;
 
 import org.mlooser.learn.spring.worldgdp.mappers.CountryLanguageRowMapper;
 import org.mlooser.learn.spring.worldgdp.model.CountryLanguage;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -15,8 +14,13 @@ public class CountryLanguageDAO {
 
     private static final Integer PAGE_SIZE = 10;
 
-    @Autowired
-    private NamedParameterJdbcTemplate namedParamJdbcTemplate;
+    private final NamedParameterJdbcTemplate namedParamJdbcTemplate;
+    private final CountryLanguageRowMapper countryLanguageRowMapper;
+
+    public CountryLanguageDAO(NamedParameterJdbcTemplate namedParamJdbcTemplate, CountryLanguageRowMapper countryLanguageRowMapper) {
+        this.namedParamJdbcTemplate = namedParamJdbcTemplate;
+        this.countryLanguageRowMapper = countryLanguageRowMapper;
+    }
 
     public List<CountryLanguage> getLanguages(String countryCode, Integer pageNo) {
         Map<String, Object> params = new HashMap<>();
@@ -32,7 +36,7 @@ public class CountryLanguageDAO {
                 + " LIMIT :size OFFSET :offset ";
 
         return namedParamJdbcTemplate.query(
-                sql, params, new CountryLanguageRowMapper());
+                sql, params, countryLanguageRowMapper);
     }
 
     public void addLanguage(CountryLanguage cl) {
