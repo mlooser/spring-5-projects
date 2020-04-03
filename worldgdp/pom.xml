@@ -87,11 +87,12 @@
   </dependencies>
 
   <build>
+    <finalName>worldgdp</finalName>
     <plugins>
-      <plugin>
+      <!--plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
-      </plugin>
+      </plugin-->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -99,6 +100,19 @@
         <configuration>
           <release>11</release>  <!--or <release>10</release>-->
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>default-war</id>
+            <phase>prepare-package</phase>
+            <configuration>
+              <failOnMissingWebXml>false</failOnMissingWebXml>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
