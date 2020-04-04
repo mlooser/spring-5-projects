@@ -1,6 +1,7 @@
 package org.mlooser.learn.spring.worldgdp.config;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
@@ -9,8 +10,8 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import javax.sql.DataSource;
 
 @Configuration
-public class TestDBConfiguration extends DBConfiguration{
-    @Override
+@ComponentScan(basePackages = "org.mlooser.learn.spring.worldgdp.mappers")
+public class TestDBConfiguration {
     @Bean
     public DataSource dataSource(){
         return new EmbeddedDatabaseBuilder()
@@ -20,5 +21,10 @@ public class TestDBConfiguration extends DBConfiguration{
                 .addScript("schema.sql")
                 .addScript("data.sql")
                 .build();
+    }
+
+    @Bean
+    public NamedParameterJdbcTemplate namedParameterJdbcTemplate(){
+        return new NamedParameterJdbcTemplate(dataSource());
     }
 }

@@ -1,9 +1,14 @@
 package org.mlooser.learn.spring.worldgdp.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Objects;
 
+@Getter
+@Setter
 public class Country {
     @NotNull
     @Size(min = 3, max = 3)
@@ -17,38 +22,6 @@ public class Country {
     private String continent;
 
     private City capital;
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getContinent() {
-        return continent;
-    }
-
-    public void setContinent(String continent) {
-        this.continent = continent;
-    }
-
-    public City getCapital() {
-        return capital;
-    }
-
-    public void setCapital(City capital) {
-        this.capital = capital;
-    }
 
     @Override
     public boolean equals(Object o) {

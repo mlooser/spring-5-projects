@@ -1,9 +1,14 @@
 package org.mlooser.learn.spring.worldgdp.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Objects;
 
+@Getter
+@Setter
 public class CountryLanguage {
     private Country country;
 
@@ -20,46 +25,6 @@ public class CountryLanguage {
 
     @NotNull
     private Double percentage;
-
-    public Country getCountry() {
-        return country;
-    }
-
-    public void setCountry(Country country) {
-        this.country = country;
-    }
-
-    public String getCountryCode() {
-        return countryCode;
-    }
-
-    public void setCountryCode(String countryCode) {
-        this.countryCode = countryCode;
-    }
-
-    public String getLanguage() {
-        return language;
-    }
-
-    public void setLanguage(String language) {
-        this.language = language;
-    }
-
-    public Boolean getIsOfficial() {
-        return isOfficial;
-    }
-
-    public void setIsOfficial(Boolean isOfficial) {
-        this.isOfficial = isOfficial;
-    }
-
-    public Double getPercentage() {
-        return percentage;
-    }
-
-    public void setPercentage(Double percentage) {
-        this.percentage = percentage;
-    }
 
     @Override
     public boolean equals(Object o) {

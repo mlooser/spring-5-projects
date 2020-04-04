@@ -1,9 +1,14 @@
 package org.mlooser.learn.spring.worldgdp.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Objects;
 
+@Getter
+@Setter
 public class City {
 
     @NotNull
@@ -24,54 +29,6 @@ public class City {
 
     @NotNull
     private Long population;
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getCountryCode() {
-        return countryCode;
-    }
-
-    public Country getCountry() {
-        return country;
-    }
-
-    public String getDistrict() {
-        return district;
-    }
-
-    public Long getPopulation() {
-        return population;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setCountryCode(String countryCode) {
-        this.countryCode = countryCode;
-    }
-
-    public void setCountry(Country country) {
-        this.country = country;
-    }
-
-    public void setDistrict(String district) {
-        this.district = district;
-    }
-
-    public void setPopulation(Long population) {
-        this.population = population;
-    }
 
     @Override
     public boolean equals(Object o) {
