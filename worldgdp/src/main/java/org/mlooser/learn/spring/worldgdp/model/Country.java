@@ -23,6 +23,10 @@ public class Country {
 
     private City capital;
 
+    @NotNull
+    @Size(max = 26)
+    private String region;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

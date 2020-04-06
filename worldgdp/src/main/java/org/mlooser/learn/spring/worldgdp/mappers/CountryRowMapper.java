@@ -16,6 +16,7 @@ public class CountryRowMapper implements RowMapper<Country> {
         country.setCode(resultSet.getString("code"));
         country.setName(resultSet.getString("name"));
         country.setContinent(resultSet.getString("continent"));
+        country.setRegion(resultSet.getString("region"));
 
         if(Long.valueOf(resultSet.getLong("capital"))!=null){
             City city = new City();

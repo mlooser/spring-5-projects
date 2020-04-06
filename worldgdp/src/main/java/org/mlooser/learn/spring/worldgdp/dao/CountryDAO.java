@@ -15,12 +15,12 @@ public class CountryDAO {
     public static final String PAGE_NO_KEY = "pageNo";
 
     private static final String SELECT =
-            "SELECT c.code, c.name, c.continent, c.capital, cy.name capital_name " +
+            "SELECT c.code, c.name, c.continent, c.capital, c.region, cy.name capital_name " +
                     "FROM country c " +
                     "LEFT OUTER JOIN city cy ON cy.id = c.capital ";
 
     private static final String SEARCH_BY_NAME_WHERE =
-            " AND ( LOWER( c.name ) LIKE CONCAT('%', LOWER(:name), '%') ";
+            " AND ( LOWER( c.name ) LIKE CONCAT('%', LOWER(:search), '%') ) ";
 
     private static final String SEARCH_BY_CONTINENT_WHERE =
             " AND c.continent = :continent ";
@@ -35,7 +35,8 @@ public class CountryDAO {
             " UPDATE country SET "
                     + " name = :name, "
                     + " capital = :capital, "
-                    + " continent = :continent "
+                    + " continent = :continent, "
+                    + " region = :region "
                     + "WHERE Code = :code ";
 
     private static final Integer PAGE_SIZE = 20;
@@ -107,6 +108,7 @@ public class CountryDAO {
         countryMap.put("name", country.getName());
         countryMap.put("capital", country.getCapital().getId());
         countryMap.put("continent", country.getContinent());
+        countryMap.put("region", country.getRegion());
         countryMap.put("code", code);
         return countryMap;
     }

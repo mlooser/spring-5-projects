@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/countries")
+@RequestMapping("/worldgdp/api/countries")
 public class CountryApiController {
 
     private final CountryDAO countryDAO;

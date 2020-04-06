@@ -10,7 +10,7 @@ import javax.validation.Valid;
 
 
 @RestController
-@RequestMapping("/api/cities")
+@RequestMapping("/worldgdp/api/cities")
 public class CityApiController {
 
     private final CityDAO cityDao;
