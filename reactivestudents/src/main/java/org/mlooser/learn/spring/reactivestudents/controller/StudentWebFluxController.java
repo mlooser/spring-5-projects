@@ -2,6 +2,7 @@ package org.mlooser.learn.spring.reactivestudents.controller;
 
 import org.mlooser.learn.spring.reactivestudents.model.Student;
 import org.mlooser.learn.spring.reactivestudents.repository.StudentMongoRepository;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,6 +30,11 @@ public class StudentWebFluxController {
 
     @GetMapping("/student/")
     public Flux<Student> getAll(){
+        return studentMongoRepository.findAll();
+    }
+
+    @GetMapping(value = "/student-sse/", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    public Flux<Student> getAllSSE(){
         return studentMongoRepository.findAll();
     }
 }
